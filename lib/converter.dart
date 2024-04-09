@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 class Emni extends StatefulWidget {
   const Emni({super.key});
 
@@ -12,6 +11,19 @@ class _EmniState extends State<Emni> {
   double result = 0;
      
   final TextEditingController textEditingController = TextEditingController();
+
+  void convert(){
+    setState(() {
+    result = double.parse(textEditingController.text)*109;
+     });
+  }
+
+  @override
+  void dispose() {
+    
+    textEditingController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +43,24 @@ class _EmniState extends State<Emni> {
        Column(mainAxisAlignment: MainAxisAlignment.center,
         children: [
           
-          Text(result.toString(),
-          style: TextStyle(
-            fontSize: 60,
-            fontWeight: FontWeight.bold,
-            color: Colors.white),
-            ),
+          Row(mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(result.toString(),
+              style: TextStyle(
+                fontSize: 50,
+                fontWeight: FontWeight.bold,
+                color: Colors.white),
+                ),
+              SizedBox(width: 6,),
+                Text('৳',
+              style: TextStyle(
+                fontSize: 45,
+                fontWeight: FontWeight.bold,
+                color: Colors.white),
+                ),
+
+            ],
+          ),
 
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -59,9 +83,7 @@ class _EmniState extends State<Emni> {
              SizedBox(height: 10,),
 
             TextButton(onPressed: (){
-              setState(() {
-                result = double.parse(textEditingController.text)*109.49;
-              });
+              convert();
             },
             style:ButtonStyle(
               backgroundColor: MaterialStatePropertyAll(Colors.black),
